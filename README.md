@@ -1,25 +1,20 @@
-# FBMP Selenium AutoLister
+# FB, ETSY, EBAY MP Selenium AutoLister
 
-Introduction
-============
+## Introduction
 
 Autilisting bot that will perform listing functions in both FBMP and Etsy. Ebay is a work in progress
 
-Dependencies
-============
+## Dependencies
 
 Your command center is located in Dropshipping Items/DROPSHIPPING_SPREADSHEET.xlsx
 
-Must create cred.py file with username and password for code to work and authenticate 
-with the marketplace you want
+Must use set_creds.py file with user email and password for code to work and authenticate
+with the marketplace and webscraper you want
 
-Install
-=======
+## Install
 
-
-$ copy and paste contents into desktop
-
-$ update cred.py with your username and password
+$ Must use set_creds.py file with user email and password for code to work and authenticate
+with the marketplace and webscraper you want
 
 $ cd to the directory
 
@@ -28,13 +23,11 @@ $ pipenv install
 $ pipenv run python fbmp_desktop_sel_list.py
 
 
-Setup
-=====
+## Setup
 
-chromedriver.exe for latest version must be installed from https://chromedriver.chromium.org/downloads
+chromedriver.exe for your chrome version must be installed from https://sites.google.com/chromium.org/driver/downloads
 
-Donations
-=====
+## Donations
 
 I accept donations in cryptocurrencies, anything helps. Thank you.
 
