@@ -1,0 +1,274 @@
+FB_PARAMS:
+
+    FB_LOGIN: "https://facebook.com/"
+
+    FB_LISTING: "https://www.facebook.com/marketplace/create/item"
+
+    FB_IMAGE_UPLOAD_XPATH: "//input[@type='file']"
+
+    FB_TITLE_XPATH: "//*[@aria-label='Title']"
+
+    FB_AVAIL_QTY_XPATH: "//*[@aria-label='Available Quantity']"
+
+    FB_PRICE_XPATH: "//*[@aria-label='Price per item']"
+
+    FB_PRICE_ONE_XPATH: "//*[@aria-label='Price']"
+
+    FB_CAT_XPATH: "//*[@aria-label='Category']"
+
+    FB_CAT_MISC_XPATH: "//*[@role='radio']"
+
+    FB_COND_XPATH: "//*[@aria-label='Condition']"
+
+    FB_COND_NEW_XPATH: "//*[@role='menuitemradio']"
+
+    FB_DESCRIPTION_XPATH: "//*[@aria-label='Description']"
+
+    FB_TAGS_XPATH: "//*[@aria-label='Product tags']"
+
+    FB_NEXT_PAGE_SHIPPING_XPATH: "//*[@aria-label='Next']"
+
+    FB_SHIPPING_TYPE_XPATH: "//*[@aria-label='Delivery method']"
+
+    FB_SHIPPING_ONLY_XPATH: "//div[@aria-checked='false'][@role='menuitemradio']"
+
+    FB_SHIPPING_OPT_ACT_XPATH: "//*[@aria-label='Shipping option']"
+
+    FB_SHIPPING_OPT_OWN_XPATH: "//div[@aria-checked='false'][@role='menuitemradio']"
+
+    FB_SHIPPING_RATE_CLICK_INPUT_XPATH: "//*[@aria-label='Shipping rate per item']"
+
+    FB_SHIPPING_RATE_CLICK_INPUT_SINGLE_XPATH: "//*[@aria-label='Shipping rate']"
+
+    FB_SHIPPING_FREE_XPATH: "//input[@name='offer_free_shipping_checkbox']"
+
+    FB_NEXT_PAGE_OFFER_XPATH: "//*[@aria-label='Next']"
+
+    FB_NEXT_PAGE_PUBLISH_XPATH: "//*[@aria-label='Next']"
+
+    FB_PUBLISH_BUTTON: "//*[@aria-label='Publish']"
+
+EBAY_PARAMS:
+
+    EBAY_LOGIN: 'https://www.ebay.com/signin/'
+
+    EBAY_USERNAME_XPATH: "//input[@name='email']"
+
+    EBAY_PASSWORD_XPATH: "//input[@name='password']"
+
+    EBAY_LOGIN_BUTTON_XPATH: "//button[@type='submit']"
+
+    EBAY_LISTING: 'https://www.ebay.com/sl/prelist/suggest'
+
+    EBAY_START_LISTING: "//input[@aria-label='Enter brand, model, or other details (ISBN, MPN, VIN)']"
+
+    EBAY_IMAGE_UPLOAD_XPATH: "//form[@id='listing-photo-uploader']"
+
+    # Two different instances
+
+    EBAY_TITLE_XPATH: "//input[@name='title']"
+
+    EBAY_WHO_MADE: "//select[@id='who_made']"
+
+    EBAY_WHO_MADE_SOMEONE_ELSE: "//option[@value='someone_else']"
+
+    EBAY_WHAT_IS_IT: "//select[@id='is_supply']"
+
+    EBAY_WHAT_IS_IT_PRODUCT: "//option[@value='0']"
+
+    EBAY_WHEN_MADE: "//select[@id='when_made']"
+
+    EBAY_WHEN_MADE_TO_ORDER: "//option[@value='made_to_order']"
+
+    EBAY_CTGRY_XPATH: "//input[@id='taxonomy-search']"
+
+    EBAY_RENEW_LISTING: "/html/body/div[3]/section/div/div[4]/div[1]/div/div/div[2]/div/div/div/div[5]/div[12]/div/fieldset/div[2]/div[1]/div[2]/label/span"
+
+    EBAY_DES_XPATH: "//label[@for='description']"
+
+    EBAY_DES1_XPATH: "//textarea[@name='description']"
+
+    EBAY_PRICE_XPATH: "//input[@name='price-input']"
+
+    EBAY_QTY_XPATH: "//input[@name='quantity-input']"
+
+    EBAY_SHIP_XPATH: "//label[@for='125349542613']"
+
+    EBAY_PUBLISH_XPATH: "//button[@class='btn btn-primary']"
+
+    EBAY_CONFIRM_XPATH: "//button[@data-ui='confirm']"
+
+ETSY_PARAMS:
+
+    ETSY_LOGIN: 'https://www.etsy.com/signin'
+
+    ETSY_USERNAME_XPATH: "//input[@name='email']"
+
+    ETSY_PASSWORD_XPATH: "//input[@name='password']"
+
+    ETSY_LOGIN_BUTTON_XPATH: "//button[@type='submit']"
+
+    ETSY_IMAGE_UPLOAD_XPATH: "//form[@id='listing-photo-uploader']"
+
+    ETSY_LISTING: 'https://www.etsy.com/your/shops/VentureStoreBoutique/tools/listings/create'
+
+    ETSY_TITLE_XPATH: "//input[@name='title']"
+
+    ETSY_WHO_MADE: "//select[@id='who_made']"
+
+    ETSY_WHO_MADE_SOMEONE_ELSE: "//option[@value='someone_else']"
+
+    ETSY_WHAT_IS_IT: "//select[@id='is_supply']"
+
+    ETSY_WHAT_IS_IT_PRODUCT: "//option[@value='0']"
+
+    ETSY_WHEN_MADE: "//select[@id='when_made']"
+
+    ETSY_WHEN_MADE_TO_ORDER: "//option[@value='made_to_order']"
+
+    ETSY_CTGRY_XPATH: "//input[@id='taxonomy-search']"
+
+    ETSY_RENEW_LISTING: "/html/body/div[3]/section/div/div[4]/div[1]/div/div/div[2]/div/div/div/div[5]/div[12]/div/fieldset/div[2]/div[1]/div[2]/label/span"
+
+    ETSY_DES_XPATH: "//label[@for='description']"
+
+    ETSY_DES1_XPATH: "//textarea[@name='description']"
+
+    ETSY_PRICE_XPATH: "//input[@name='price-input']"
+
+    ETSY_QTY_XPATH: "//input[@name='quantity-input']"
+
+    ETSY_SHIP_XPATH: "//label[@for='125349542613']"
+
+    ETSY_PUBLISH_XPATH: "//button[@class='btn btn-primary']"
+
+    ETSY_CONFIRM_XPATH: "//button[@data-ui='confirm']"
+
+ALI_WEBSCRAPER_PARAMS:
+
+    ALI_LOGIN: "https://login.aliexpress.com/"
+
+    ALI_USERNAME_XPATH: "//input[@name='fm-login-id']"
+
+    ALI_PASSWORD_XPATH: "//input[@name='fm-login-password']"
+
+    ALI_LOGIN_BUTTON_XPATH: "//button[@type='submit']"
+
+    ALI_US_SHIP: "//span[text()='United States']"
+
+    ALI_SOUP_TITLE_EXT: '"h1", attrs={"class": "product-title-text"}'
+
+    ALI_SOUP_DES_EXT: '"meta", attrs={"name": "description"}'
+
+    ALI_SOUP_PRICE_EXT: '"span", attrs={"itemprop": "price"}'
+
+    ALI_SOUP_SHIPPRICE_EXT: '"div", attrs={"class": "product-shipping-price"}'
+
+    ALI_SOUP_SHIPHOW_EXT: '"span", attrs={"class": "product-shipping-info black-link"}'
+
+    ALI_XPATH_WISHLIST_PAGE: "https://my.aliexpress.com/wishlist/wish_list_product_list.htm?page="
+
+    ALI_IMAGEPATHLIST_HTML: r'("imagePathList":\[.*?)\]'
+
+CHEWY_WEBSCRAPER_PARAMS:
+
+    CHEWY_LOGIN: "https://www.chewy.com/app/login?"
+
+    CHEWY_USERNAME_XPATH: "//input[@id='username']"
+
+    CHEWY_PASSWORD_XPATH: "//input[@id='password']"
+
+    CHEWY_LOGIN_BUTTON_XPATH: "//input[@name='submitForm']"
+
+    CHEWY_LISTS: "https://www.chewy.com/app/account/favorites"
+
+    CHEWY_SOUP_SHIPHOW_EXT: '"span", attrs={"class": "free-shipping js-edd-conditional-display"}'
+
+    CHEWY_SOUP_AUTOSHIPPRICE_EXT: '"div", attrs={"id": "autoship-pricing"}'
+
+    CHEWY_SOUP_COLORLIST_EXT: '"div", attrs={"id": "variation-Color"}'
+
+    CHEWY_SOUP_COLORLIST_FINDALL_EXT: '"span", attrs={"class": "cw-visually-hidden"}'
+
+    CHEWY_SOUP_SIZELIST_EXT: '"div", attrs={"id": "variation-Size"}'
+
+    CHEWY_SOUP_SIZELIST_FINDALL_EXT: '"span", attrs={"class": "cw-visually-hidden"}'
+
+    CHEWY_XPATH_CLICKMYFAV: "//div[@class='ListCard-name'][text()='My Favorites']"
+
+    CHEWY_SOUP_IMAGEFILE_EXT: '"img", attrs={"class": "pl-FluidImage-image"}'
+
+EBAY_WEBSCRAPER_PARAMS:
+
+    EBAY_LOGIN: "https://www.ebay.com/signin/"
+
+    EBAY_USERNAME_XPATH: "//input[@name='email']"
+
+    EBAY_PASSWORD_XPATH: "//input[@name='password']"
+
+    EBAY_LOGIN_BUTTON_XPATH: "//button[@type='submit']"
+
+    EBAY_SOUP_LINK_FINDALL_EXT: '"a", attrs={"class": "display-inline-block listing-link"}'
+
+    EBAY_SOUP_TITLE_EXT: "h1.it-ttl"
+
+    EBAY_SOUP_DES_EXT: 'id="desc_ifr"'
+
+    EBAY_SOUP_PRICE_EXT: '"span", attrs={"itemprop": "price"}'
+
+    EBAY_SOUP_SHIPPRICE_EXT: '"span", attrs={"id": "fshippingCost"}'
+
+    EBAY_SOUP_SHIPHOW_EXT: '"span", attrs={"itemprop": "availableAtOrFrom"}'
+
+    EBAY_LINK_LIST: "https://www.ebay.com/mye/myebay/watchlist?custom_list_id=WATCH_LIST&page_number="
+
+    EBAY_SOUP_IMAGELINK_96_EXT: r"(http:|https:)(\/\/i.ebayimg.com[^\"\']*)(96.png|96.jpg|96.jpeg|96.gif|96.png|96.svg|96.webp)"
+
+    EBAY_SOUP_IMAGELINK_300_EXT: r"(http:|https:)(\/\/i.ebayimg.com[^\"\']*)(300.png|300.jpg|300.jpeg|300.gif|300.png|300.svg|300.webp)"
+
+    EBAY_SOUP_IMAGELINK_64_EXT: r"(http:|https:)(\/\/i.ebayimg.com[^\"\']*)(64.png|64.jpg|64.jpeg|64.gif|64.png|64.svg|64.webp)"
+
+ETSY_WEBSCRAPER_PARAMS:
+
+    ETSY_LOGIN: "https://www.etsy.com/signin"
+
+    ETSY_USERNAME_XPATH: "//input[@name='email']"
+
+    ETSY_PASSWORD_XPATH: "//input[@name='password']"
+
+    ETSY_LOGIN_BUTTON_XPATH: "//button[@type='submit']"
+
+    ETSY_SOUP_SHIPPRICE_EXT: '"p", attrs={"class": "wt-text-body-03 wt-mt-xs-1 wt-line-height-tight"},'
+
+    ETSY_SOUP_SHIPHOW_EXT: '"div", attrs={"class": "wt-grid__item-xs-12 wt-text-black wt-text-caption"},'
+
+    ETSY_LINK_LIST: 'https://www.etsy.com/people/ehgp?ref=hdr_user_menu-profile&page='
+
+    ETSY_SOUP_IMAGELINK_EXT: r"(http:|https:)(\/\/[^\"\']*\.(?:png|jpg|jpeg|gif|png|svg|webp))"
+
+WAYFAIR_WEBSCRAPER_PARAMS:
+
+    WAYFAIR_LOGIN: "https://www.wayfair.com/v/account/authentication/login?"
+
+    WAYFAIR_USERNAME_XPATH: "//input[@id='textInput-0']"
+
+    WAYFAIR_PASSWORD_XPATH: "//input[@id='textInput-1']"
+
+    WAYFAIR_LOGIN_BUTTON_XPATH: "//button[@type='submit']"
+
+    WAYFAIR_LISTS: "https://www.wayfair.com/lists"
+
+    WAYFAIR_WT_DIM_XPATH: "//div[text()='Weights & Dimensions']"
+
+    WAYFAIR_SPEC_XPATH: "//div[text()='Specifications']"
+
+    WAYFAIR_SOUP_SHIPPRICE_EXT: '"span", attrs={"class": "ShippingHeadline-text"}'
+
+    WAYFAIR_SOUP_SHIPHOW_EXT: '"div", attrs={"data-enzyme-id": "FullWidthShippingOptions"}'
+
+    WAYFAIR_FAVLIST_XPATH: "//div[@class='ListCard-name'][text()='My Favorites']"
+
+    WAYFAIR_SOUP_LINK_EXT: '"a", attrs={"class": "pl-ProductCard-productCardElement"}'
+
+    WAYFAIR_SOUP_IMGLINK_EXT: '"img", attrs={"class": "pl-FluidImage-image"}'
+
