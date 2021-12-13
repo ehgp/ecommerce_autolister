@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Autilisting bot that will perform listing functions in both FBMP and Etsy. Ebay is a work in progress
+Autolisting bot that will perform listing functions in both FBMP and Etsy. Ebay is a work in progress
 
 ## Dependencies
 
@@ -13,19 +13,18 @@ with the marketplace and webscraper you want
 
 ## Install
 
-$ Must use set_creds.py file with user email and password for code to work and authenticate
+* Must use set_creds.py file with user email and password for code to work and authenticate
 with the marketplace and webscraper you want
 
-$ cd to the directory
+* cd to the directory
 
-$ pipenv install
+* pipenv install
 
-$ pipenv run python fbmp_desktop_sel_list.py
-
+* pipenv run python fbmp_desktop_sel_list.py
 
 ## Setup
 
-chromedriver.exe for your chrome version must be installed from https://sites.google.com/chromium.org/driver/downloads
+chromedriver.exe for your chrome version must be installed from <https://sites.google.com/chromium.org/driver/downloads>
 
 ## Donations
 
