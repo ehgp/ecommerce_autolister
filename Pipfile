@@ -12,6 +12,7 @@ pyautogui = "==0.9.52"
 pathlib2 = "==2.3.5"
 keyring = "==22.3.0"
 pyyaml = "==5.4.1"
+bs4 = "==0.0.1"
 
 [requires]
 python_version = "3.8"
