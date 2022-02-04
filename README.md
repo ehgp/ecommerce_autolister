@@ -11,6 +11,9 @@ Your command center is located in Dropshipping Items/DROPSHIPPING_SPREADSHEET.xl
 Must use set_creds.py file with user email and password for code to work and authenticate
 with the marketplace and webscraper you want
 
+Python 3.8.8
+pipenv 2021.11.23
+
 ## Install
 
 * Must use set_creds.py file with user email and password for code to work and authenticate
@@ -24,7 +27,7 @@ with the marketplace and webscraper you want
 
 ## Setup
 
-chromedriver.exe for your chrome version must be installed from <https://sites.google.com/chromium.org/driver/downloads>
+chromedriver.exe for your chrome version must be installed from [here](https://sites.google.com/chromium.org/driver/downloads)
 
 ## Donations
 

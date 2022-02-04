@@ -14,6 +14,8 @@ from pathlib import Path
 import pandas as pd
 
 path = Path(os.getcwd())
+Path("log").mkdir(parents=True, exist_ok=True)
+
 binary_path = Path(path, "chromedriver.exe")
 
 new_items_ali = pd.read_csv(Path(path, "Dropshipping Items", "new_links_ali.csv"))

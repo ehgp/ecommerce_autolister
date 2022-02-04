@@ -46,6 +46,7 @@ dropship_sh_path = Path(path, "Dropshipping Items", "DROPSHIPPING_SPREADSHEET.xl
 dropship_path = Path(path, "Droppping Items")
 
 # Logging
+Path("log").mkdir(parents=True, exist_ok=True)
 log_config = Path(path, "log_config.yaml")
 timestamp = "{:%Y_%m_%d_%H_%M_%S}".format(dt.datetime.now())
 with open(log_config, "r") as log_file:

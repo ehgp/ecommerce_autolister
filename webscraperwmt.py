@@ -34,6 +34,7 @@ def format_filename(s):
 
 
 path = Path(os.getcwd())
+Path("log").mkdir(parents=True, exist_ok=True)
 URL = "https://www.walmart.com/ip/LED-Face-Mask-Luminous-Programmable-Message-Display-Mask-Rechargeable/978504239"
 title = "Bluetooth App LED Mask Customize"
 

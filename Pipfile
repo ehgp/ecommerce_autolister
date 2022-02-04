@@ -4,15 +4,16 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [packages]
-ipython = "*"
-requests = "==2.24.0"
-selenium = "==3.141.0"
-pandas = "*"
-pyautogui = "==0.9.52"
-pathlib2 = "==2.3.5"
-keyring = "==22.3.0"
-pyyaml = "==5.4.1"
-bs4 = "==0.0.1"
+ipython = {version = "*", index="pypi"}
+requests = {version = "==2.24.0", index="pypi"}
+selenium = {version = "==3.141.0", index="pypi"}
+pandas = {version = "==1.3.3", index="pypi"}
+pyautogui = {version = "==0.9.52", index="pypi"}
+pathlib2 = {version = "==2.3.5", index="pypi"}
+keyring = {version = "==22.3.0", index="pypi"}
+pyyaml = {version = "==5.4.1", index="pypi"}
+bs4 = {version = "==0.0.1", index="pypi"}
+black = {version = "==21.12b0", index="pypi"}
 
 [requires]
 python_version = "3.8"

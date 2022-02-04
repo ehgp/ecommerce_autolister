@@ -17,6 +17,7 @@ import datetime as dt
 path = Path(os.getcwd())
 
 # Logging
+Path("log").mkdir(parents=True, exist_ok=True)
 log_config = Path(path, "log_config.yaml")
 timestamp = "{:%Y_%m_%d_%H_%M_%S}".format(dt.datetime.now())
 with open(log_config, "r") as log_file:
