@@ -365,7 +365,9 @@ for i in range(0, len(items_to_list)):
             time.sleep(random.uniform(0.4, 0.6))
             nextpage = (
                 WebDriverWait(driver, 10)
-                .until(EC.element_to_be_clickable((By.XPATH, FB_NEXT_PAGE_SHIPPING_XPATH)))
+                .until(
+                    EC.element_to_be_clickable((By.XPATH, FB_NEXT_PAGE_SHIPPING_XPATH))
+                )
                 .click()
             )
 
@@ -387,13 +389,17 @@ for i in range(0, len(items_to_list)):
             time.sleep(random.uniform(0.15, 0.4))
             freeshiplabel = (
                 WebDriverWait(driver, 10)
-                .until(EC.element_to_be_clickable((By.XPATH, FB_SHIPPING_OPT_ACT_XPATH)))
+                .until(
+                    EC.element_to_be_clickable((By.XPATH, FB_SHIPPING_OPT_ACT_XPATH))
+                )
                 .click()
             )
             time.sleep(random.uniform(0.15, 0.4))
             ownshiplabel = (
                 WebDriverWait(driver, 10)
-                .until(EC.element_to_be_clickable((By.XPATH, FB_SHIPPING_OPT_OWN_XPATH)))
+                .until(
+                    EC.element_to_be_clickable((By.XPATH, FB_SHIPPING_OPT_OWN_XPATH))
+                )
                 .send_keys(Keys.ENTER)
             )
 
@@ -437,7 +443,9 @@ for i in range(0, len(items_to_list)):
             logger.info("next page")
             nextpage = (
                 WebDriverWait(driver, 10)
-                .until(EC.element_to_be_clickable((By.XPATH, FB_NEXT_PAGE_PUBLISH_XPATH)))
+                .until(
+                    EC.element_to_be_clickable((By.XPATH, FB_NEXT_PAGE_PUBLISH_XPATH))
+                )
                 .click()
             )
 
