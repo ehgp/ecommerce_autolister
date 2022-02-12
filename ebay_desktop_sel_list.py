@@ -297,7 +297,9 @@ for i in range(0, len(items_to_list)):
             time.sleep(random.uniform(0.15, 0.4))
             someone_else_made = (
                 WebDriverWait(driver, 10)
-                .until(EC.element_to_be_clickable((By.XPATH, EBAY_WHO_MADE_SOMEONE_ELSE)))
+                .until(
+                    EC.element_to_be_clickable((By.XPATH, EBAY_WHO_MADE_SOMEONE_ELSE))
+                )
                 .click()
             )
             time.sleep(random.uniform(0.15, 0.4))
@@ -332,7 +334,9 @@ for i in range(0, len(items_to_list)):
             ctgry = driver.find_element_by_xpath(EBAY_CTGRY_XPATH).send_keys(Keys.ENTER)
             time.sleep(random.randint(3, 5))
             logger.info("DESCRIPTION")
-            description = driver.find_element_by_xpath(EBAY_DES_XPATH).send_keys(Keys.END)
+            description = driver.find_element_by_xpath(EBAY_DES_XPATH).send_keys(
+                Keys.END
+            )
             time.sleep(random.uniform(0.15, 0.4))
             description = driver.find_element_by_xpath(EBAY_DES1_XPATH).send_keys(
                 Keys.CLEAR
@@ -344,7 +348,9 @@ for i in range(0, len(items_to_list)):
             time.sleep(random.randint(3, 5))
             time.sleep(random.randint(10, 15))
             logger.info("PRICE")
-            price = driver.find_element_by_xpath(EBAY_PRICE_XPATH).send_keys(Keys.BACKSPACE)
+            price = driver.find_element_by_xpath(EBAY_PRICE_XPATH).send_keys(
+                Keys.BACKSPACE
+            )
             price = driver.find_element_by_xpath(EBAY_PRICE_XPATH).send_keys(
                 int(items_to_list["Price"][i])
             )
@@ -356,7 +362,9 @@ for i in range(0, len(items_to_list)):
             )
             logger.info("SHIPPING DEFAULT")
             time.sleep(random.uniform(0.15, 0.4))
-            ship_default = driver.find_element_by_xpath(EBAY_SHIP_XPATH).send_keys(Keys.END)
+            ship_default = driver.find_element_by_xpath(EBAY_SHIP_XPATH).send_keys(
+                Keys.END
+            )
             time.sleep(random.uniform(0.15, 0.4))
             ship_default = driver.find_element_by_xpath(EBAY_SHIP_XPATH).click()
             time.sleep(random.uniform(0.15, 0.4))
@@ -380,4 +388,3 @@ for i in range(0, len(items_to_list)):
             driver.quit()
             logger.info(e)
             shutil.rmtree(".profile-EBAY")
-
