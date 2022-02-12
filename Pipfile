@@ -8,12 +8,11 @@ ipython = {version = "*", index="pypi"}
 requests = {version = "==2.24.0", index="pypi"}
 selenium = {version = "==3.141.0", index="pypi"}
 pandas = {version = "==1.3.3", index="pypi"}
-pyautogui = {version = "==0.9.52", index="pypi"}
 pathlib2 = {version = "==2.3.5", index="pypi"}
 keyring = {version = "==22.3.0", index="pypi"}
 pyyaml = {version = "==5.4.1", index="pypi"}
 bs4 = {version = "==0.0.1", index="pypi"}
 black = {version = "==21.12b0", index="pypi"}
-
-[requires]
-python_version = "3.8"
+pyautogui = "==0.9.53"
+openpyxl = {version = "==3.0.7", index="pypi"}
+lxml = {version = "==4.6.3", index="pypi"}

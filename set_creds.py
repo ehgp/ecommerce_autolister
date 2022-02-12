@@ -25,7 +25,7 @@ with open(log_config, "r") as log_file:
     # Append date stamp to the file name
     log_filename = config_dict["handlers"]["file"]["filename"]
     base, extension = os.path.splitext(log_filename)
-    base2 = "set_creds"
+    base2 = "_" + os.path.splitext(os.path.basename(__file__))[0] + "_"
     log_filename = "{}{}{}{}".format(base, base2, timestamp, extension)
     config_dict["handlers"]["file"]["filename"] = log_filename
     logging.config.dictConfig(config_dict)
@@ -33,15 +33,15 @@ logger = logging.getLogger(__name__)
 
 # Leverages Windows Credential Manager and Mac Keychain to store credentials
 # and also makes environment variables that store your credentials in your computer
-users = [
+dsns = [
     "FACEBOOK_EMAIL",
     "FACEBOOK_PASSWORD",
     # "ALI_EMAIL",
     # "ALI_PASSWORD",
     # "CHEWY_EMAIL",
     # "CHEWY_PASSWORD",
-    # "EBAY_EMAIL",
-    # "EBAY_PASSWORD",
+    "EBAY_EMAIL",
+    "EBAY_PASSWORD",
     # "ETSY_EMAIL",
     # "ETSY_PASSWORD",
     # "WAYFAIR_EMAIL",
@@ -50,8 +50,8 @@ users = [
     # "WALMART_PASSWORD",
 ]
 user = getuser()
-for i in users:
-    dsn = i
-    prompt = input(f"Please input {dsn}: ")
-    password = getpass(prompt=prompt, stream=None)
-    keyring.set_password(dsn, user, password)
+for dsn in dsns:
+    if keyring.get_password(dsn, user) is None:
+        prompt = f"Please input {dsn}: "
+        password = getpass(prompt=prompt, stream=None)
+        keyring.set_password(dsn, user, password)

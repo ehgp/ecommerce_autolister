@@ -1,6 +1,17 @@
+GENERAL_PARAMS:
+
+    DEFAULT_HEADERS: |
+        {
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+        "accept-encoding": "gzip, deflate, br",
+        "accept-language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.82 Safari/537.36",
+        "origin": "https://www.facebook.com",
+        }
+
 FB_PARAMS:
 
-    FB_LOGIN: "https://facebook.com/"
+    FB_LOGIN: "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1"
 
     FB_LISTING: "https://www.facebook.com/marketplace/create/item"
 
@@ -50,7 +61,7 @@ FB_PARAMS:
 
 EBAY_PARAMS:
 
-    EBAY_LOGIN: 'https://www.ebay.com/signin/'
+    EBAY_LOGIN: "https://signin.ebay.com/ws/eBayISAPI.dll?SignIn"
 
     EBAY_USERNAME_XPATH: "//input[@name='email']"
 
@@ -146,6 +157,8 @@ ETSY_PARAMS:
 
 ALI_WEBSCRAPER_PARAMS:
 
+    PAGES: 3
+
     ALI_LOGIN: "https://login.aliexpress.com/"
 
     ALI_USERNAME_XPATH: "//input[@name='fm-login-id']"
@@ -171,6 +184,8 @@ ALI_WEBSCRAPER_PARAMS:
     ALI_IMAGEPATHLIST_HTML: r'("imagePathList":\[.*?)\]'
 
 CHEWY_WEBSCRAPER_PARAMS:
+
+    PAGES: 3
 
     CHEWY_LOGIN: "https://www.chewy.com/app/login?"
 
@@ -199,6 +214,8 @@ CHEWY_WEBSCRAPER_PARAMS:
     CHEWY_SOUP_IMAGEFILE_EXT: '"img", attrs={"class": "pl-FluidImage-image"}'
 
 EBAY_WEBSCRAPER_PARAMS:
+
+    PAGES: 3
 
     EBAY_LOGIN: "https://www.ebay.com/signin/"
 
@@ -230,6 +247,8 @@ EBAY_WEBSCRAPER_PARAMS:
 
 ETSY_WEBSCRAPER_PARAMS:
 
+    PAGES: 5
+
     ETSY_LOGIN: "https://www.etsy.com/signin"
 
     ETSY_USERNAME_XPATH: "//input[@name='email']"
@@ -247,6 +266,8 @@ ETSY_WEBSCRAPER_PARAMS:
     ETSY_SOUP_IMAGELINK_EXT: r"(http:|https:)(\/\/[^\"\']*\.(?:png|jpg|jpeg|gif|png|svg|webp))"
 
 WAYFAIR_WEBSCRAPER_PARAMS:
+
+    PAGES: 3
 
     WAYFAIR_LOGIN: "https://www.wayfair.com/v/account/authentication/login?"
 

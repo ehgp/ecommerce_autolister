@@ -17,8 +17,6 @@ import requests
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
-from selenium.common.exceptions import Timeoutexception
-from selenium.common.exceptions import NoSuchElemention
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -33,6 +31,42 @@ import datetime as dt
 import yaml
 import keyring
 
+
+def format_filename(s):
+    """Take a string and return a valid filename constructed from the string.
+
+    Uses a whitelist approach: any characters not present in valid_chars are
+    removed.
+
+    Note: this method may produce invalid filenames such as ``, `.` or `..`
+    When I use this method I prepend a date string like '2009_01_15_19_46_32_'
+    and append a file extension like '.txt', so I avoid the potential of using
+    an invalid filename.
+
+    """
+    valid_chars = "-_.() %s%s" % (string.ascii_letters, string.digits)
+    filename = "".join(re.sub("[^A-Za-z0-9]+", " ", c) for c in s if c in valid_chars)
+    filename = " ".join(filename.split())
+    return filename
+
+
+def _load_config():
+    """Load the configuration yaml and return dictionary of setttings.
+
+    Returns:
+        yaml as a dictionary.
+    """
+    config_path = os.path.dirname(os.path.realpath(__file__))
+    config_path = os.path.join(config_path, "xpath_params.yaml")
+    with open(config_path, "r") as config_file:
+        config_defs = yaml.safe_load(config_file.read())
+
+    if config_defs.values() is None:
+        raise ValueError("parameters yaml file incomplete")
+
+    return config_defs
+
+
 # Creds
 user = getuser()
 etsy_email = keyring.get_password("ETSY_EMAIL", user)
@@ -42,7 +76,7 @@ etsy_pass = keyring.get_password("ETSY_PASSWORD", user)
 path = Path(os.getcwd())
 binary_path = Path(path, "chromedriver.exe")
 dropship_sh_path = Path(path, "Dropshipping Items", "DROPSHIPPING_SPREADSHEET.xlsx")
-dropship_path = Path(path, "Droppping Items")
+dropship_path = Path(path, "Dropshipping Items")
 
 # Logging
 Path("log").mkdir(parents=True, exist_ok=True)
@@ -53,45 +87,33 @@ with open(log_config, "r") as log_file:
     # Append date stamp to the file name
     log_filename = config_dict["handlers"]["file"]["filename"]
     base, extension = os.path.splitext(log_filename)
-    base2 = "webscraperetsy"
+    base2 = "_" + os.path.splitext(os.path.basename(__file__))[0] + "_"
     log_filename = "{}{}{}{}".format(base, base2, timestamp, extension)
     config_dict["handlers"]["file"]["filename"] = log_filename
     logging.config.dictConfig(config_dict)
 logger = logging.getLogger(__name__)
 
-PAGES = 5
+cf = _load_config()
 
-DEFAULT_HEADERS = {
-    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-    "accept-encoding": "gzip, deflate, br",
-    "accept-language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7",
-    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.202 Safari/537.36",
-    "origin": "https://www.facebook.com",
-}
+DEFAULT_HEADERS = cf["GENERAL_PARAMS"]["DEFAULT_HEADERS"]
 
-ETSY_LOGIN = "https://www.etsy.com/signin"
+PAGES = cf["ETSY_WEBSCRAPER_PARAMS"]["PAGES"]
 
-ETSY_USERNAME_XPATH = "//input[@name='email']"
+ETSY_LOGIN = cf["ETSY_WEBSCRAPER_PARAMS"]["ETSY_LOGIN"]
 
-ETSY_PASSWORD_XPATH = "//input[@name='password']"
+ETSY_USERNAME_XPATH = cf["ETSY_WEBSCRAPER_PARAMS"]["ETSY_USERNAME_XPATH"]
 
-ETSY_LOGIN_BUTTON_XPATH = "//button[@type='submit']"
+ETSY_PASSWORD_XPATH = cf["ETSY_WEBSCRAPER_PARAMS"]["ETSY_PASSWORD_XPATH"]
 
-ETSY_SOUP_SHIPPRICE_EXT = (
-    '"p", attrs={"class": "wt-text-body-03 wt-mt-xs-1 wt-line-height-tight"},'
-)
+ETSY_LOGIN_BUTTON_XPATH = cf["ETSY_WEBSCRAPER_PARAMS"]["ETSY_LOGIN_BUTTON_XPATH"]
 
-ETSY_SOUP_SHIPHOW_EXT = (
-    '"div", attrs={"class": "wt-grid__item-xs-12 wt-text-black wt-text-caption"},'
-)
+ETSY_SOUP_SHIPPRICE_EXT = cf["ETSY_WEBSCRAPER_PARAMS"]["ETSY_SOUP_SHIPPRICE_EXT"]
 
-ETSY_LINK_LIST = (
-    "https://www.etsy.com/people/erickhgarciap?ref=hdr_user_menu-profile&page="
-)
+ETSY_SOUP_SHIPHOW_EXT = cf["ETSY_WEBSCRAPER_PARAMS"]["ETSY_SOUP_SHIPHOW_EXT"]
 
-ETSY_SOUP_IMAGELINK_EXT = (
-    r"(http:|https:)(\/\/[^\"\']*\.(?:png|jpg|jpeg|gif|png|svg|webp))"
-)
+ETSY_LINK_LIST = cf["ETSY_WEBSCRAPER_PARAMS"]["ETSY_LINK_LIST"]
+
+ETSY_SOUP_IMAGELINK_EXT = cf["ETSY_WEBSCRAPER_PARAMS"]["ETSY_SOUP_IMAGELINK_EXT"]
 
 # Configure ChromeOptions
 options = Options()
@@ -111,6 +133,11 @@ options.add_argument("--ignore-ssl-errors")
 # options.add_argument('--headless')
 # options.add_argument('--window-size=1910x1080')
 # options.add_argument('--proxy-server=http://'+ proxies[0]))
+options.add_argument("--disable-infobars")  # disabling infobars
+options.add_argument("--disable-extensions")  # disabling extensions
+options.add_argument("--disable-gpu")  # applicable to windows os only
+options.add_argument("--disable-dev-shm-usage")  # overcome limited resource problems
+options.add_argument("--remote-debugging-port=9222")
 
 
 def save_to_file_wishlist(response, i):

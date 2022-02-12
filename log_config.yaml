@@ -25,3 +25,8 @@ loggers:
     level: INFO
     handlers: [console, file]
     propagate: False
+
+  selenium:
+    level: INFO
+    handlers: [console, file]
+    propagate: False

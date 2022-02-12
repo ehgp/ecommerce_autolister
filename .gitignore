@@ -52,6 +52,7 @@ coverage.xml
 
 # Log
 **/*.log
+**/*.csv
 
 # Sphinx documentation
 docs/_build/
@@ -64,3 +65,4 @@ target/
 Pipfile.lock
 chromedriver.exe
 **/*.dat
+**/*.html

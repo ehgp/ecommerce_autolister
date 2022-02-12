@@ -12,8 +12,6 @@ from webscraperwayfair import imagewebscraperwayfair
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
-from selenium.common.exceptions import TimeoutException
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -34,6 +32,42 @@ from pathlib import Path
 import yaml
 import keyring
 import pyautogui
+
+
+def format_filename(s):
+    """Take a string and return a valid filename constructed from the string.
+
+    Uses a whitelist approach: any characters not present in valid_chars are
+    removed.
+
+    Note: this method may produce invalid filenames such as ``, `.` or `..`
+    When I use this method I prepend a date string like '2009_01_15_19_46_32_'
+    and append a file extension like '.txt', so I avoid the potential of using
+    an invalid filename.
+
+    """
+    valid_chars = "-_.() %s%s" % (string.ascii_letters, string.digits)
+    filename = "".join(re.sub("[^A-Za-z0-9]+", " ", c) for c in s if c in valid_chars)
+    filename = " ".join(filename.split())
+    return filename
+
+
+def _load_config():
+    """Load the configuration yaml and return dictionary of setttings.
+
+    Returns:
+        yaml as a dictionary.
+    """
+    config_path = os.path.dirname(os.path.realpath(__file__))
+    config_path = os.path.join(config_path, "xpath_params.yaml")
+    with open(config_path, "r") as config_file:
+        config_defs = yaml.safe_load(config_file.read())
+
+    if config_defs.values() is None:
+        raise ValueError("parameters yaml file incomplete")
+
+    return config_defs
+
 
 # chrome_options = Options()
 # chrome_options.add_argument("--headless")
@@ -61,28 +95,11 @@ with open(log_config, "r") as log_file:
     # Append date stamp to the file name
     log_filename = config_dict["handlers"]["file"]["filename"]
     base, extension = os.path.splitext(log_filename)
-    base2 = "fbmp_mobile_sel_list"
+    base2 = "_" + os.path.splitext(os.path.basename(__file__))[0] + "_"
     log_filename = "{}{}{}{}".format(base, base2, timestamp, extension)
     config_dict["handlers"]["file"]["filename"] = log_filename
     logging.config.dictConfig(config_dict)
 logger = logging.getLogger(__name__)
-
-
-def format_filename(s):
-    """Take a string and return a valid filename constructed from the string.
-
-    Uses a whitelist approach: any characters not present in valid_chars are
-    removed. Also spaces are replaced with underscores.
-
-    Note: this method may produce invalid filenames such as ``, `.` or `..`
-    When I use this method I prepend a date string like '2009_01_15_19_46_32_'
-    and append a file extension like '.txt', so I avoid the potential of using
-    an invalid filename.
-    """
-    valid_chars = "-_.() %s%s" % (string.ascii_letters, string.digits)
-    filename = "".join(c for c in s if c in valid_chars)
-    filename = filename.replace(" ", "_")  # I don't like spaces in filenames.
-    return filename
 
 
 # OpenBrowser
