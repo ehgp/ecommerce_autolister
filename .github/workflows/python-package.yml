@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: python-lint-test
+name: python-lint-test-pages
 
 on:
   push:
@@ -15,7 +15,6 @@ jobs:
       fail-fast: false
       matrix:
         python-version: [3.8]
-
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python 3.8
@@ -24,6 +23,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
           # Optional - x64 or x86 architecture, defaults to x64
           architecture: 'x64'
+
       # You can test your matrix by printing the current Python version
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
@@ -55,7 +55,6 @@ jobs:
       fail-fast: false
       matrix:
         python-version: [3.8]
-
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python 3.8
@@ -64,10 +63,51 @@ jobs:
           python-version: ${{ matrix.python-version }}
           # Optional - x64 or x86 architecture, defaults to x64
           architecture: 'x64'
+
       # You can test your matrix by printing the current Python version
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
+
       - name: unit test
         run: |
           echo 'No Unit Test Found'
 
+  pages:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+        # Optional - x64 or x86 architecture, defaults to x64
+        architecture: 'x64'
+
+      # You can test your matrix by printing the current Python version
+    - name: Display Python version
+      run: python -c "import sys; print(sys.version)"
+
+    - name: Sphinx Pages
+      run: |
+        pip install -U sphinx --quiet
+        pip install sphinx_rtd_theme --quiet
+        pip install recommonmark --quiet
+        pip install pyyaml --quiet
+        sphinx-build -b html docs/source docs/build/html
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: html-docs
+        path: docs/build/html/
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: docs/build/html
