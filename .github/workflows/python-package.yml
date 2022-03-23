@@ -65,15 +65,16 @@ jobs:
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
 
+      # When you want to run unit tests add these to the run script
+      # apt-get update --quiet
+      # apt-get upgrade -y --quiet
+      # apt-get install build-essential libssl-dev libffi-dev python3-dev -y --quiet
+      # pip install --upgrade pip --quiet
+      # pip install pytest --quiet
+      # pip install . --quiet
+      # python -m pytest --quiet
       - name: unittest
         run: |
-          # apt-get update --quiet
-          # apt-get upgrade -y --quiet
-          # apt-get install build-essential libssl-dev libffi-dev python3-dev -y --quiet
-          # pip install --upgrade pip --quiet
-          # pip install pytest --quiet
-          # pip install . --quiet
-          # python -m pytest --quiet
           echo 'No Unit Test Found'
 
   pages:
