@@ -30,7 +30,7 @@ jobs:
         run: |
           pip install --upgrade pip --quiet
           pip install flake8==3.9.0 --quiet
-          pip install black==21.12b0 --quiet
+          pip install black==22.3.0 --quiet
           pip install pydocstyle==6.0.0 --quiet
           pip install pipenv --quiet
 
