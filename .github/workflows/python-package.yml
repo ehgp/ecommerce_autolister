@@ -74,7 +74,7 @@ jobs:
 # pip install --upgrade pip --quiet
 # pip install pipenv==2022.1.8 --quiet
 # pipenv install --verbose 3
-# pipenv install pytest --quiet
+# pipenv install pytest
 # pipenv run python -m pytest
 
   pages:
