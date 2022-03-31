@@ -100,7 +100,7 @@ jobs:
       run: |
         pip install --upgrade pip --quiet
         pip install pipenv==2022.1.8 --quiet
-        pipenv install --verbose 3 --quiet
+        pipenv install --verbose 3
         pipenv run python sphinx-build -b html docs/source docs/build/html
 
     - name: Upload artifacts
