@@ -5,3 +5,5 @@ FBMP Desktop Autolister
 
 .. automodule:: fbmp_desktop_sel_list
     :members:
+    :inherited-members:
+    :undoc-members:

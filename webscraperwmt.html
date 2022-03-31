@@ -116,6 +116,21 @@
 <h1>Walmart Web Scraper<a class="headerlink" href="#walmart-web-scraper" title="Permalink to this headline"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
+<span class="target" id="module-webscraperwmt"></span><p>WALMART IMAGE SCRAPER.</p>
+<p>Scrapes images from your list on WALMART</p>
+<p>Author: ehgp</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="webscraperwmt.format_filename">
+<span class="sig-prename descclassname"><span class="pre">webscraperwmt.</span></span><span class="sig-name descname"><span class="pre">format_filename</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#webscraperwmt.format_filename" title="Permalink to this definition"></a></dt>
+<dd><p>Take a string and return a valid filename constructed from the string.</p>
+<p>Uses a whitelist approach: any characters not present in valid_chars are
+removed. Also spaces are replaced with underscores.</p>
+<p>Note: this method may produce invalid filenames such as <a href="#id1"><span class="problematic" id="id2">``</span></a>, <cite>.</cite> or <cite>..</cite>
+When I use this method I prepend a date string like ‘<a href="#id3"><span class="problematic" id="id4">2009_01_15_19_46_32_</span></a>’
+and append a file extension like ‘.txt’, so I avoid the potential of using
+an invalid filename.</p>
+</dd></dl>
+
 </section>
 
 

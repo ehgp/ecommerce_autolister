@@ -5,3 +5,5 @@ Wayfair Web Scraper
 
 .. automodule:: webscraperwayfair
     :members:
+    :inherited-members:
+    :undoc-members:

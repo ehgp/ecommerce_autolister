@@ -5,3 +5,5 @@ Chewy Web Scraper
 
 .. automodule:: webscraperchewy
     :members:
+    :inherited-members:
+    :undoc-members:

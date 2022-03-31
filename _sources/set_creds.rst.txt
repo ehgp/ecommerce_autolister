@@ -5,3 +5,5 @@ Set Creds
 
 .. automodule:: set_creds
     :members:
+    :inherited-members:
+    :undoc-members:
