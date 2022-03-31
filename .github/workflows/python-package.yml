@@ -73,7 +73,7 @@ jobs:
 # apt-get install build-essential libssl-dev libffi-dev python3-dev -y --quiet
 # pip install --upgrade pip --quiet
 # pip install pipenv==2022.1.8 --quiet
-# pipenv install --verbose 3 --quiet
+# pipenv install --verbose 3
 # pipenv install pytest --quiet
 # pipenv run python -m pytest
 
