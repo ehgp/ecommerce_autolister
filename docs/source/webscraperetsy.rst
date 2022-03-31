@@ -5,3 +5,5 @@ Etsy Web Scraper
 
 .. automodule:: webscraperetsy
     :members:
+    :inherited-members:
+    :undoc-members:

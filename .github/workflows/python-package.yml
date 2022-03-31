@@ -72,9 +72,10 @@ jobs:
 # apt-get upgrade -y --quiet
 # apt-get install build-essential libssl-dev libffi-dev python3-dev -y --quiet
 # pip install --upgrade pip --quiet
-# pip install pytest --quiet
-# pip install . --quiet
-# python -m pytest
+# pip install pipenv==2022.1.8 --quiet
+# pipenv install --verbose 3 --quiet
+# pipenv install pytest --quiet
+# pipenv run python -m pytest
 
   pages:
     runs-on: ubuntu-latest
@@ -98,17 +99,15 @@ jobs:
     - name: Sphinx Pages
       run: |
         pip install --upgrade pip --quiet
-        pip install -U sphinx --quiet
-        pip install sphinx_rtd_theme --quiet
-        pip install recommonmark --quiet
-        pip install pyyaml --quiet
-        sphinx-build -b html docs/source docs/build/html
+        pip install pipenv==2022.1.8 --quiet
+        pipenv install --verbose 3 --quiet
+        pipenv run python sphinx-build -b html docs/source docs/build/html
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v1
       with:
         name: html-docs
-        path: docs/build/html/
+        path: docs/build/html
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3

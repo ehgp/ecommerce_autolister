@@ -5,3 +5,5 @@ eBay Web Scraper
 
 .. automodule:: webscraperebay
     :members:
+    :inherited-members:
+    :undoc-members:

@@ -5,3 +5,5 @@ Etsy Desktop Autolister
 
 .. automodule:: etsy_desktop_sel_list
     :members:
+    :inherited-members:
+    :undoc-members:

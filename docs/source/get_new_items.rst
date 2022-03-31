@@ -5,3 +5,5 @@ Get New Items
 
 .. automodule:: get_new_items
     :members:
+    :inherited-members:
+    :undoc-members:

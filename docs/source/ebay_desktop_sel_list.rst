@@ -5,3 +5,5 @@ eBay Desktop Autolister
 
 .. automodule:: ebay_desktop_sel_list
     :members:
+    :inherited-members:
+    :undoc-members:

@@ -5,3 +5,5 @@ Walmart Web Scraper
 
 .. automodule:: webscraperwmt
     :members:
+    :inherited-members:
+    :undoc-members:

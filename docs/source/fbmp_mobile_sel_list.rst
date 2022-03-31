@@ -5,3 +5,5 @@ FBMP Mobile Autolister
 
 .. automodule:: fbmp_mobile_sel_list
     :members:
+    :inherited-members:
+    :undoc-members:

@@ -5,3 +5,5 @@ Ali Express Web Scraper
 
 .. automodule:: webscraperali
     :members:
+    :inherited-members:
+    :undoc-members:

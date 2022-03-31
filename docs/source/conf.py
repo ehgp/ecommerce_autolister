@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.abspath("../.."))
 # # -- Project information -----------------------------------------------------
 project = "eCommerce Autolister"
 author = "ehgp"
-copyright = f"{dt.date.today().year} ehgp. All rights reserved."
+copyright = "%s ehgp. All rights reserved." % (dt.date.today().year)
 # The full version, including alpha/beta/rc tags
 release = "0.1.0"
 # -- General configuration ---------------------------------------------------
@@ -22,6 +22,7 @@ release = "0.1.0"
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.napoleon",
+    "sphinx.ext.coverage",
     "recommonmark",
 ]
 napoleon_google_docstring = True
