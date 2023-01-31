@@ -14,7 +14,7 @@ pyyaml = {version = "==5.4.1", index="pypi"}
 bs4 = {version = "==0.0.1", index="pypi"}
 pyautogui = "==0.9.53"
 openpyxl = {version = "==3.0.7", index="pypi"}
-lxml = {version = "==4.6.3", index="pypi"}
+lxml = {version = "==4.6.5", index="pypi"}
 Sphinx = {version = "==4.4.0", index="pypi"}
 sphinx-rtd-theme = {version = "==1.0.0", index="pypi"}
 recommonmark = {version = "==0.7.1", index="pypi"}
