@@ -15,6 +15,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+import chromedriver_autoinstaller
 from getpass import getuser
 import time
 import logging
@@ -82,7 +83,8 @@ fb_pass = keyring.get_password("FACEBOOK_PASSWORD", user)
 
 # Paths
 path = Path(os.getcwd())
-binary_path = Path(path, "chromedriver.exe")
+# binary_path = Path(path, "chromedriver.exe")
+chromedriver_autoinstaller.install()
 dropship_sh_path = Path(path, "Dropshipping Items", "DROPSHIPPING_SPREADSHEET.xlsx")
 dropship_path = Path(path, "Droppping Items")
 

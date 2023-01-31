@@ -15,7 +15,6 @@ import string
 import json
 import shutil
 
-
 def format_filename(s):
     """Take a string and return a valid filename constructed from the string.
 

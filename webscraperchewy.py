@@ -21,6 +21,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
+import chromedriver_autoinstaller
 import time
 import random
 import pandas as pd
@@ -75,7 +76,8 @@ chewy_pass = keyring.get_password("CHEWY_PASSWORD", user)
 
 # Paths
 path = Path(os.getcwd())
-binary_path = Path(path, "chromedriver.exe")
+# binary_path = Path(path, "chromedriver.exe")
+chromedriver_autoinstaller.install()
 dropship_sh_path = Path(path, "Dropshipping Items", "DROPSHIPPING_SPREADSHEET.xlsx")
 dropship_path = Path(path, "Dropshipping Items")
 
@@ -215,7 +217,9 @@ new_sizes = []
 def listingscraper(new_items):
     """Scrape listing title, description, price, ship price."""
     for idx, link in enumerate(new_items):
-        with webdriver.Chrome(executable_path=binary_path, options=options) as driver:
+        with webdriver.Chrome(
+            # executable_path=binary_path,
+         options=options) as driver:
             driver.get(link)
             time.sleep(random.randint(10, 15))
             elem = driver.find_element_by_xpath("//*")
@@ -399,7 +403,9 @@ def listingscraper(new_items):
 def linkscraperchewy():
     """Extract Links from CHEWY list."""
     # Go to the website
-    with webdriver.Chrome(executable_path=binary_path, options=options) as driver:
+    with webdriver.Chrome(
+        # executable_path=binary_path,
+         options=options) as driver:
         action = ActionChains(driver)
         if os.path.exists(".profile-CHEWY") is False:
             # Logging IN
@@ -528,7 +534,9 @@ def linkscraperchewy():
 
 def imagewebscraperchewy(URL, title):
     """Webscrape Images from Chewy."""
-    with webdriver.Chrome(executable_path=binary_path, options=options) as driver:
+    with webdriver.Chrome(
+        # executable_path=binary_path,
+         options=options) as driver:
         action = ActionChains(driver)
         # Logging IN
         driver.get(CHEWY_LOGIN)

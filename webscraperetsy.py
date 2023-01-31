@@ -20,6 +20,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+import chromedriver_autoinstaller
 import time
 import random
 import pandas as pd
@@ -74,7 +75,8 @@ etsy_pass = keyring.get_password("ETSY_PASSWORD", user)
 
 # Paths
 path = Path(os.getcwd())
-binary_path = Path(path, "chromedriver.exe")
+# binary_path = Path(path, "chromedriver.exe")
+chromedriver_autoinstaller.install()
 dropship_sh_path = Path(path, "Dropshipping Items", "DROPSHIPPING_SPREADSHEET.xlsx")
 dropship_path = Path(path, "Dropshipping Items")
 
@@ -371,7 +373,9 @@ def listingscraper(new_items):
 def linkscraperetsy():
     """Extract Links from ETSY list."""
     # Go to the website
-    with webdriver.Chrome(executable_path=binary_path, options=options) as driver:
+    with webdriver.Chrome(
+        # executable_path=binary_path,
+     options=options) as driver:
         driver.get(ETSY_LOGIN)
         if os.path.exists(".profile-ETSY") is False:
             # Logging IN

@@ -15,6 +15,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+import chromedriver_autoinstaller
 from getpass import getuser
 import shutil
 import time
@@ -70,7 +71,8 @@ def _load_config():
 
 # Paths
 path = Path(os.getcwd())
-binary_path = Path(path, "chromedriver.exe")
+# binary_path = Path(path, "chromedriver.exe")
+chromedriver_autoinstaller.install()
 dropship_sh_path = Path(path, "Dropshipping Items", "DROPSHIPPING_SPREADSHEET.xlsx")
 dropship_path = Path(path, "Dropshipping Items")
 
@@ -232,7 +234,9 @@ for i in range(0, len(items_to_list)):
                 Path(dropship_path, items_to_list["Title"][i], imagename)
             )
 
-    with webdriver.Chrome(executable_path=binary_path, options=options) as driver:
+    with webdriver.Chrome(
+        # executable_path=binary_path,
+        options=options) as driver:
         try:
             logger.info("Log In")
             driver.get(FB_LOGIN)

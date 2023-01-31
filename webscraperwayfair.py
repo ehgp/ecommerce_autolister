@@ -20,6 +20,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+import chromedriver_autoinstaller
 import time
 import random
 import pandas as pd
@@ -74,7 +75,8 @@ wayfair_pass = keyring.get_password("WAYFAIR_PASSWORD", user)
 
 # Paths
 path = Path(os.getcwd())
-binary_path = Path(path, "chromedriver.exe")
+# binary_path = Path(path, "chromedriver.exe")
+chromedriver_autoinstaller.install()
 dropship_sh_path = Path(path, "Dropshipping Items", "DROPSHIPPING_SPREADSHEET.xlsx")
 dropship_path = Path(path, "Dropshipping Items")
 
@@ -207,7 +209,9 @@ extracted_links = []
 def listingscraper(new_items):
     """Scrape listing title, description, price, ship price."""
     for idx, link in enumerate(new_items):
-        with webdriver.Chrome(executable_path=binary_path, options=options) as driver:
+        with webdriver.Chrome(
+            # executable_path=binary_path,
+         options=options) as driver:
             driver.get(link)
             time.sleep(random.randint(10, 15))
             click_wt_and_dim = (
@@ -457,7 +461,9 @@ def listingscraper(new_items):
 def linkscraperwayfair():
     """Extract Links from WAYFAIR list."""
     # Go to the website
-    with webdriver.Chrome(executable_path=binary_path, options=options) as driver:
+    with webdriver.Chrome(
+        # executable_path=binary_path,
+         options=options) as driver:
 
         if os.path.exists(".profile-WAYFAIR") is False:
             # Logging IN
@@ -539,7 +545,9 @@ def linkscraperwayfair():
 
 def imagewebscraperwayfair(URL, title):
     """Webscrape Images from WAYFAIR."""
-    with webdriver.Chrome(executable_path=binary_path, options=options) as driver:
+    with webdriver.Chrome(
+        # executable_path=binary_path,
+         options=options) as driver:
 
         # Logging IN
         driver.get(WAYFAIR_LOGIN)
