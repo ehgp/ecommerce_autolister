@@ -1,0 +1,6 @@
+{
+    "threshold": 0,
+    "reporters": ["html", "console", "badge"],
+    "ignore": [".github/workflows/python-package.yml","/node_modules/jscpd/"],
+    "absolute": true
+  }

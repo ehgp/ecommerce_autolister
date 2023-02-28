@@ -1,0 +1,172 @@
+# Workflow will use Python 3.8 in lint stages using flake8, black and pydocstyle, analyze stage with codeQL, test stage using pytest and build stage using Sphinx
+name: python-lint-analyze-test-build-sphinx
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  # lint:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
+  #       with:
+  #         # Full git history is needed to get a proper list of changed files within `super-linter`
+  #         fetch-depth: 0
+
+  #     - name: Lint Code Base
+  #       uses: github/super-linter/slim@v4
+  #       env:
+  #         VALIDATE_ALL_CODEBASE: false
+  #         VALIDATE_JSCPD: false
+  #         VALIDATE_PYTHON_MYPY: false
+  #         DEFAULT_BRANCH: main
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.8]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          # Optional - x64 or x86 architecture, defaults to x64
+          architecture: 'x64'
+
+      # You can test your matrix by printing the current Python version
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip --quiet
+          pip install pre-commit==2.20.0 --quiet
+          pre-commit install
+
+      - name: lint
+        run:
+          pre-commit run --all-files
+
+  # analyze:
+  #   name: Analyze
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     actions: read
+  #     contents: read
+  #     security-events: write
+
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       language: [ 'python' ]
+  #       # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby' ]
+  #       # Learn more about CodeQL language support at https://git.io/codeql-language-support
+
+  #   steps:
+  #   - name: Checkout repository
+  #     uses: actions/checkout@v2
+
+  #   # Initializes the CodeQL tools for scanning.
+  #   - name: Initialize CodeQL
+  #     uses: github/codeql-action/init@v1
+  #     with:
+  #       languages: ${{ matrix.language }}
+  #       # If you wish to specify custom queries, you can do so here or in a config file.
+  #       # By default, queries listed here will override any specified in a config file.
+  #       # Prefix the list here with "+" to use these queries and those in the config file.
+  #       # queries: ./path/to/local/query, your-org/your-repo/queries@main
+
+  #   # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
+  #   # If this step fails, then you should remove it and run the build manually (see below)
+  #   - name: Autobuild
+  #     uses: github/codeql-action/autobuild@v1
+
+  #   # ℹ️ Command-line programs to run using the OS shell.
+  #   # 📚 https://git.io/JvXDl
+
+  #   # ✏️ If the Autobuild fails above, remove it and uncomment the following three lines
+  #   #    and modify them (or add more) to build your code if your project
+  #   #    uses a compiled language
+
+  #   #- run: |
+  #   #   make bootstrap
+  #   #   make release
+
+  #   - name: Perform CodeQL Analysis
+  #     uses: github/codeql-action/analyze@v1
+
+  # test:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       python-version: [3.8]
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Set up Python 3.8
+  #       uses: actions/setup-python@v2
+  #       with:
+  #         python-version: ${{ matrix.python-version }}
+  #         # Optional - x64 or x86 architecture, defaults to x64
+  #         architecture: 'x64'
+
+  #     # You can test your matrix by printing the current Python version
+  #     - name: Display Python version
+  #       run: python -c "import sys; print(sys.version)"
+
+  #     - name: test
+  #       run: |
+  #         echo 'No Unit Test Found'
+# apt-get update --quiet
+# apt-get upgrade -y --quiet
+# apt-get install build-essential libssl-dev libffi-dev python3-dev -y --quiet
+# pip install --upgrade pip --quiet
+# pip install -r requirements.txt --quiet
+# pip install pytest --quiet
+# pip install . --quiet
+# python -m pytest
+
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+        # Optional - x64 or x86 architecture, defaults to x64
+        architecture: 'x64'
+
+      # You can test your matrix by printing the current Python version
+    - name: Display Python version
+      run: python -c "import sys; print(sys.version)"
+
+    - name: Sphinx Pages
+      run: |
+        pip install --upgrade pip --quiet
+        pip install -r requirements.txt --quiet
+        sphinx-build -b html docs/source public
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: html-docs
+        path: public
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: public

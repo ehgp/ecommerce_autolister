@@ -1,0 +1,16 @@
+ignored:
+    - DL3008 # Pin versions in apt get install. Instead of `apt-get install <package>` use `apt-get install <package>=<version>`
+    - DL3018 # Pin versions in apk add. Instead of `apk add <package>` use `apk add <package>=<version>`
+    - DL4000 # Set the SHELL option -o pipefail before RUN with a pipe in it. If you are using /bin/sh in an alpine image or if your shell is symlinked to busybox then consider explicitly setting your SHELL to /bin/ash, or disable this check
+    - DL4001 # Either use Wget or Curl but not both
+    - DL4006 # Set the SHELL option -o pipefail before RUN with a pipe in it. If you are using /bin/sh in an alpine image or if your shell is symlinked to busybox then consider explicitly setting your SHELL to /bin/ash, or disable this check
+    - DL3008 # warning: Pin versions in apt get install. Instead of `apt-get install <package>` use `apt-get install <package>=<version>`
+    - DL3009 #info: Delete the apt-get lists after installing something
+    - DL3042 #warning: Avoid use of cache directory with pip. Use `pip install --no-cache-dir <package>`
+    - DL3013 #warning: Pin versions in pip. Instead of `pip install <package>` use `pip install <package>==<version>` or `pip install --requirement <requirements file>`
+    - DL3042 #warning: Avoid use of cache directory with pip. Use `pip install --no-cache-dir <package>`
+    - DL3059 #info: Multiple consecutive `RUN` instructions. Consider consolidation.
+    - DL4000 #info: Multiple `CMD` instructions found. If you list more than one `CMD` then only the last `CMD` will take effect
+    - DL4001 #info: Either use Wget or Curl but not both
+    - DL4006 #info: Specify a maintainer of the Dockerfile
+

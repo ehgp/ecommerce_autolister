@@ -1,0 +1,31 @@
+# MD013/line-length - Line length
+MD013:
+  # Number of characters
+  line_length: 10000
+  # Number of characters for headings
+  heading_line_length: 80
+  # Number of characters for code blocks
+  code_block_line_length: 80
+  # Include code blocks
+  code_blocks: true
+  # Include tables
+  tables: true
+  # Include headings
+  headings: true
+  # Include headings
+  headers: true
+  # Strict length checking
+  strict: false
+  # Stern length checking
+  stern: false
+
+# MD049/emphasis-style - Emphasis style should be consistent
+MD049:
+  # Emphasis style should be consistent
+  style: "consistent"
+
+# MD045/no-alt-text - Images should have alternate text (alt text)
+MD045: false
+
+# MD033/no-inline-html - Inline HTML
+MD033: false

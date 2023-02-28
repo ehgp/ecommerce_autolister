@@ -1,0 +1,89 @@
+default:
+    image: python:3.7
+    before_script:
+        - echo "machine gitlab.com login gitlab-ci-token password ${CI_JOB_TOKEN}" > ~/.netrc
+        - apt-get update && apt-get upgrade -y --quiet
+        - changed_files=$(git diff --no-commit-id --name-only -r $CI_COMMIT_SHA)
+        - pip install --upgrade pip setuptools wheel twine pipenv virtualenv conda poetry -- quiet
+        # Base
+        # - pip install -r requirements.txt
+        # # Virtualenv
+        # - virtualenv venv
+        # - source venv/bin/activate
+        # # Pipenv
+        # - pipenv install
+        # # Conda Env
+        # - conda env create -f environment.yml
+        # - conda activate myenv
+        # # Poetry
+        # - poetry install
+
+    cache:
+        paths:
+            - .cache/node_modules
+            # - .venv/
+            # - .conda/
+            # - .poetry/
+    only:
+        - main
+
+    variables:
+        GIT_STRATEGY: clone
+        PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+        SAST_DEFAULT_ANALYZERS: semgrep,secrets,dependency-check
+        SECRET_DETECTION_HISTORIC_SCAN: "true"
+
+stages:
+    - lint
+    - test
+    - build
+
+lint:
+    stage: lint
+    allow_failure: true
+    script:
+          - pip install --upgrade pip --quiet
+          - pip install -r requirements.txt
+          - pip install pre-commit==2.20.0 --quiet
+          - pre-commit install --file linters/.pre-commit-config.yaml
+          - pre-commit run --all-files
+    only:
+        - main
+
+sast:
+    stage: test
+    before_script:
+        - echo "machine gitlab.com login gitlab-ci-token password ${CI_JOB_TOKEN}" > ~/.netrc
+    allow_failure: true
+    include:
+        - template: Jobs/SAST.gitlab-ci.yml
+        - template: Jobs/License-Scanning.gitlab-ci.yml
+        - template: Jobs/Dependency-Scanning.gitlab-ci.yml
+        - template: Jobs/Secret-Detection.gitlab-ci.yml
+    only:
+        - main
+
+test:
+    stage: test
+    allow_failure: true
+    script:
+        - pip install -r requirements.txt
+        - pip install pytest --quiet
+        - python -m pytest
+    only:
+        - main
+
+build:
+    stage: build
+    script:
+        - pip install -U sphinx --quiet
+        - pip install -U sphinx_rtd_theme --quiet
+        - pip install -U recommonmark --quiet
+        - pip install -U pyyaml --quiet
+        - pip install -r requirements.txt --quiet
+        - sphinx-build -b html docs/source public
+    artifacts:
+        paths:
+            - public
+    only:
+        - main
