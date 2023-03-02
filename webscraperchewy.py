@@ -4,34 +4,35 @@ Scrapes images from your list on CHEWY
 
 Author: ehgp
 """
+import datetime as dt
+import json
+import logging
+import logging.config
 import os
+import pickle
+import random
+import re
+import string
+import sys
+import time
+from getpass import getuser
 from os import listdir
 from os.path import isfile, join
 from pathlib import Path
-from bs4 import BeautifulSoup
-import re
-import string
-import json
-import pickle
-import requests
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
+
 import chromedriver_autoinstaller
-import time
-import random
-import pandas as pd
-from getpass import getuser
-import logging
-import logging.config
-import sys
-import datetime as dt
-import yaml
 import keyring
+import pandas as pd
+import requests
+import yaml
+from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 def format_filename(s):
@@ -219,7 +220,8 @@ def listingscraper(new_items):
     for idx, link in enumerate(new_items):
         with webdriver.Chrome(
             # executable_path=binary_path,
-         options=options) as driver:
+            options=options
+        ) as driver:
             driver.get(link)
             time.sleep(random.randint(10, 15))
             elem = driver.find_element_by_xpath("//*")
@@ -405,7 +407,8 @@ def linkscraperchewy():
     # Go to the website
     with webdriver.Chrome(
         # executable_path=binary_path,
-         options=options) as driver:
+        options=options
+    ) as driver:
         action = ActionChains(driver)
         if os.path.exists(".profile-CHEWY") is False:
             # Logging IN
@@ -536,7 +539,8 @@ def imagewebscraperchewy(URL, title):
     """Webscrape Images from Chewy."""
     with webdriver.Chrome(
         # executable_path=binary_path,
-         options=options) as driver:
+        options=options
+    ) as driver:
         action = ActionChains(driver)
         # Logging IN
         driver.get(CHEWY_LOGIN)

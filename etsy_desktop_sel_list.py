@@ -4,35 +4,37 @@ Allows user to leverage an excel sheet to automatically add products to ETSY
 
 Author: ehgp
 """
+import datetime as dt
+import logging
+import logging.config
+import os
+import random
+import re
+import shutil
+import string
+import time
+from getpass import getuser
+from os import listdir
+from os.path import isfile, join
+from pathlib import Path
+
+import chromedriver_autoinstaller
+import keyring
+import pandas as pd
+import pyautogui
+import yaml
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+
 from webscraperali import imagewebscraperali
 from webscraperchewy import imagewebscraperchewy
 from webscraperebay import imagewebscraperebay
 from webscraperetsy import imagewebscraperetsy
 from webscraperwayfair import imagewebscraperwayfair
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-import chromedriver_autoinstaller
-from getpass import getuser
-import time
-import logging
-import logging.config
-import random
-import pandas as pd
-import os
-import string
-import re
-import datetime as dt
-from os import listdir
-from os.path import isfile, join
-from pathlib import Path
-import yaml
-import keyring
-import pyautogui
-import shutil
 
 
 def format_filename(s):
@@ -229,7 +231,8 @@ for i in range(0, len(items_to_list)):
 
     with webdriver.Chrome(
         # executable_path=binary_path,
-         options=options) as driver:
+        options=options
+    ) as driver:
         try:
             driver.get(ETSY_LOGIN)
             logger.info("Log In")

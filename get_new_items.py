@@ -4,14 +4,16 @@ Automatically gets new links from products from your lists
 
 Author: ehgp
 """
+import os
+from pathlib import Path
+
+import pandas as pd
+
 import webscraperali
+import webscraperchewy
 import webscraperebay
 import webscraperetsy
 import webscraperwayfair
-import webscraperchewy
-import os
-from pathlib import Path
-import pandas as pd
 
 path = Path(os.getcwd())
 Path("log").mkdir(parents=True, exist_ok=True)

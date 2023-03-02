@@ -3,15 +3,15 @@
 Leverages Keyring to add your credentials for each portal and then retrieves them in code.
 author: ehgp
 """
-from getpass import getpass
-from getpass import getuser
-import keyring
-from pathlib import Path
-import os
-import yaml
+import datetime as dt
 import logging
 import logging.config
-import datetime as dt
+import os
+from getpass import getpass, getuser
+from pathlib import Path
+
+import keyring
+import yaml
 
 # Paths
 path = Path(os.getcwd())

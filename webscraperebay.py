@@ -4,33 +4,34 @@ Scrapes images from your list on EBAY
 
 Author: ehgp
 """
+import datetime as dt
+import json
+import logging
+import logging.config
 import os
+import pickle
+import random
+import re
+import string
+import sys
+import time
+from getpass import getuser
 from os import listdir
 from os.path import isfile, join
 from pathlib import Path
-from bs4 import BeautifulSoup
-import re
-import string
-import json
-import pickle
-import requests
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
+
 import chromedriver_autoinstaller
-import time
-import random
-import pandas as pd
-from getpass import getuser
-import logging
-import logging.config
-import sys
-import datetime as dt
-import yaml
 import keyring
+import pandas as pd
+import requests
+import yaml
+from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 def format_filename(s):
@@ -385,7 +386,8 @@ def linkscraperebay():
     # Go to the website
     with webdriver.Chrome(
         # executable_path=binary_path,
-         options=options) as driver:
+        options=options
+    ) as driver:
         driver.get(EBAY_LOGIN)
         time.sleep(random.randint(10, 15))
         if os.path.exists(".profile-EBAY") is False:

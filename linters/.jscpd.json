@@ -1,6 +1,6 @@
 {
-    "threshold": 0,
-    "reporters": ["html", "console", "badge"],
-    "ignore": [".github/workflows/python-package.yml","/node_modules/jscpd/"],
-    "absolute": true
-  }
+  "threshold": 0,
+  "reporters": ["html", "console", "badge"],
+  "ignore": [".github/workflows/python-lint-analyze-test-build-sphinx.yml","/node_modules/jscpd/","/linters/",".gitlab/.gitlab-ci-py.yml"],
+  "absolute": true
+}

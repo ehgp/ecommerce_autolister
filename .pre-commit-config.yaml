@@ -1,0 +1,61 @@
+exclude: ".json$"
+repos:
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v4.0.1
+      hooks:
+          - id: check-added-large-files
+          - id: check-case-conflict
+          - id: check-json
+          - id: check-merge-conflict
+          - id: check-symlinks
+          - id: check-toml
+          - id: check-yaml
+          - id: debug-statements
+          - id: detect-private-key
+          - id: end-of-file-fixer
+          - id: mixed-line-ending
+          - id: trailing-whitespace
+
+    - repo: https://github.com/pycqa/flake8
+      rev: 5.0.4
+      hooks:
+          - id: flake8
+            args: [--config, linters/.flake8]
+
+    - repo: https://github.com/psf/black
+      rev: 22.3.0
+      hooks:
+          - id: black
+
+    - repo: https://github.com/pcqa/pylint
+      rev: v2.15.5
+      hooks:
+          - id: pylint
+            args: [--rcfile, linters/.pylintrc]
+
+    - repo: https://github.com/pcqa/pydocstyle
+      rev: 6.1.1
+      hooks:
+          - id: pydocstyle
+            additional_dependencies: [pydocstyle-quotes]
+            args: [--config, linters/.pydocstyle]
+
+    - repo: https://github.com/pycqa/isort
+      rev: 5.11.5
+      hooks:
+          - id: isort
+            name: isort (python)
+            args: [--profile, black]
+          - id: isort
+            name: isort (cython)
+            types: [cython]
+          - id: isort
+            name: isort (pyi)
+            types: [pyi]
+
+    # - repo: https://github.com/antonbabenko/pre-commit-terraform
+    #   rev: v1.74.1
+    #   hooks:
+    #       - id: terraform_fmt
+    #         args:
+    #             - --args=-write=true

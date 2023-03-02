@@ -1,4 +1,5 @@
 [flake8]
+# Doc: https://flake8.pycqa.org/en/latest/user/configuration.html
 # E203: whitespace before ':' (black does not add whitespace)
 # W503: line break before binary operator (black does not add line breaks)
 # F403: 'from module import *' used; unable to detect undefined names
