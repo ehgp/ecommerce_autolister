@@ -7,45 +7,45 @@ on:
             - main
 
 jobs:
-    # lint:
-    #     runs-on: ubuntu-latest
-    #     steps:
-    #         - name: Checkout code
-    #           uses: actions/checkout@v3
-    #           with:
-    #               # Full git history is needed to get a proper list of changed files within `super-linter`
-    #               fetch-depth: 0
-
-    #         - name: Lint Code Base
-    #           uses: github/super-linter/slim@v4
-    #           env:
-    #               VALIDATE_ALL_CODEBASE: false
-    #               VALIDATE_JSCPD: false
-    #               VALIDATE_PYTHON_MYPY: false
-    #               DEFAULT_BRANCH: main
-    #               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    pre-commit:
+    lint:
         runs-on: ubuntu-latest
-        strategy:
-            fail-fast: false
-            matrix:
-                python-version: [3.8]
         steps:
-            - name: Set up creds
-              run: echo "machine github.com login github-ci-token password ${{secrets.GITHUB_TOKEN}}" > ~/.netrc
-
-            - uses: de-vri-es/setup-git-credentials@v2
-              with:
-                  credentials: ${{secrets.GITHUB_TOKEN}}
-
-            - name: Checkout repository
+            - name: Checkout code
               uses: actions/checkout@v3
-
-            - name: lint
-              uses: pre-commit/action@v3.0.0
               with:
-                  extra_args: --all-files
+                  # Full git history is needed to get a proper list of changed files within `super-linter`
+                  fetch-depth: 0
+
+            - name: Lint Code Base
+              uses: github/super-linter/slim@v4
+              env:
+                  VALIDATE_ALL_CODEBASE: false
+                  VALIDATE_JSCPD: false
+                  VALIDATE_PYTHON_MYPY: false
+                  DEFAULT_BRANCH: main
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    # pre-commit:
+    #     runs-on: ubuntu-latest
+    #     strategy:
+    #         fail-fast: false
+    #         matrix:
+    #             python-version: [3.8]
+    #     steps:
+    #         - name: Set up creds
+    #           run: echo "machine github.com login github-ci-token password ${{secrets.GITHUB_TOKEN}}" > ~/.netrc
+
+    #         - uses: de-vri-es/setup-git-credentials@v2
+    #           with:
+    #               credentials: ${{secrets.GITHUB_TOKEN}}
+
+    #         - name: Checkout repository
+    #           uses: actions/checkout@v3
+
+    #         - name: lint
+    #           uses: pre-commit/action@v3.0.0
+    #           with:
+    #               extra_args: --all-files
 
     # analyze:
     #     name: Analyze
