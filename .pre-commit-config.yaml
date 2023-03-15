@@ -37,7 +37,6 @@ repos:
       rev: 6.1.1
       hooks:
           - id: pydocstyle
-            additional_dependencies: [pydocstyle-quotes]
             args: [--config, linters/.pydocstyle]
 
     - repo: https://github.com/pycqa/isort
