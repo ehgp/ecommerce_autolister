@@ -27,13 +27,13 @@ repos:
       hooks:
           - id: black
 
-    - repo: https://github.com/pcqa/pylint
+    - repo: https://github.com/pycqa/pylint
       rev: v2.15.5
       hooks:
           - id: pylint
             args: [--rcfile, linters/.pylintrc]
 
-    - repo: https://github.com/pcqa/pydocstyle
+    - repo: https://github.com/pycqa/pydocstyle
       rev: 6.1.1
       hooks:
           - id: pydocstyle
